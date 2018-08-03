@@ -1,0 +1,63 @@
+<?php
+namespace app\index\controller;
+use think\Controller;
+use think\Request;
+use think\Cookie;
+class Home extends Controller{
+	private static $user_id;
+	public  function __construct(){
+		 self::$user_id=Cookie::get('user_id');
+		 if (empty(self::$user_id)) {
+		 	$this->error('请先登录','/login/login');die;
+		 }
+	}
+	
+	public function index(){
+		
+		return $this->fetch('index');
+	}
+	//帮助模块
+	public function product(){
+		return $this->fetch('product');
+	}
+	//文章模块
+	public function article(){
+		return $this->fetch('article');
+	}
+	//自定义导航模块
+	public function nav(){
+		return $this->fetch('nav');
+	}
+	//自定义模块
+	public function show(){
+		return $this->fetch('show');
+	}
+	//单页面
+	public function page(){
+		return $this->fetch('page');
+	}
+	//管理员模块
+	public function manager(){
+		return $this->fetch('manager');
+	}
+	//系统设置
+	public function system(){
+		return $this->fetch('system');
+	}
+	//商品分类
+	public function product_category(){
+		return $this->fetch('product_category');
+	}
+	//文章分类
+	public function article_category(){
+		return $this->fetch('article_category');
+	}
+	//数据备份
+	public function backup(){
+		return $this->fetch('backup');
+	}
+	//操作记录
+	public function manager_log(){
+		return $this->fetch('manager_log');
+	}
+}
